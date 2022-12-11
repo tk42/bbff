@@ -1,0 +1,45 @@
+version: '3'
+services:
+  graphql-engine:
+    image: hasura/graphql-engine:v2.16.0
+    ports:
+    - "8080:8080"
+    depends_on:
+    - "postgres"
+    restart: always
+    environment:
+      ## postgres database to store Hasura metadata
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://user:pass@postgres:5432/db
+      ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
+      PG_DATABASE_URL: postgres://user:pass@postgres:5432/db
+      ## enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      ## enable debugging mode. It is recommended to disable this in production
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to run console offline (i.e load console assets from server instead of CDN)
+      # HASURA_GRAPHQL_CONSOLE_ASSETS_DIR: /srv/console-assets
+      ## uncomment next line to set an admin secret
+      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+
+  postgres:
+    image: postgres:latest
+    env_file:
+      - .env.local
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  pgweb:
+    image: 'sosedoff/pgweb:latest'
+    environment:
+      DATABASE_URL: postgres://user:pass@postgres:5432/db?sslmode=disable
+    depends_on:
+      - postgres
+    ports:
+      - 8081:8081
+    command: ["sh", "-c", "sleep 3; /usr/bin/pgweb --bind=0.0.0.0 --listen=8081"]
+
+volumes:
+    postgres_data:

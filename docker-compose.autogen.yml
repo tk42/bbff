@@ -1,0 +1,41 @@
+version: '3'
+services:
+  sqlc:
+    image: kjconroy/sqlc:latest
+    volumes:
+      - ".:/src"
+    working_dir: "/src"
+    command: generate
+
+  migration:
+    image: postgres:latest
+    command: sh -c "psql -h postgres -U user -d db -f /app/migration.sql"
+    environment:
+      - PGPASSWORD=pass
+    volumes:
+      - ./schema.sql:/app/migration.sql
+    depends_on:
+      - sqlc
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    env_file:
+      - .env.local
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  pgweb:
+    image: 'sosedoff/pgweb:latest'
+    environment:
+      DATABASE_URL: postgres://user:pass@postgres:5432/db?sslmode=disable
+    depends_on:
+      - postgres
+    ports:
+      - 8081:8081
+    command: ["sh", "-c", "sleep 3; /usr/bin/pgweb --bind=0.0.0.0 --listen=8081"]
+
+volumes:
+    postgres_data:

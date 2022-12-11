@@ -1,0 +1,119 @@
+_type: export
+__export_format: 4
+__export_date: 2022-12-11T14:03:10.568Z
+__export_source: insomnia.desktop.app:v2022.6.0
+resources:
+  - _id: req_6eb578b29c5d462084b25c1d2b82af45
+    parentId: wrk_2474bfe3e12747f295992da493b73c47
+    modified: 1670767257972
+    created: 1670767103801
+    url: http://localhost:8080/v1/graphql
+    name: GetAgents
+    description: ""
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query GetAgents {\n  agents
+        {\n    email\n    id\n    name\n  }\n}","operationName":"GetAgents"}'
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1670767103801
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_2474bfe3e12747f295992da493b73c47
+    parentId: null
+    modified: 1670767100605
+    created: 1670767100605
+    name: bbff
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_1e0a7de49e544df3b514b03c9099d309
+    parentId: wrk_2474bfe3e12747f295992da493b73c47
+    modified: 1670767258918
+    created: 1670767154882
+    url: http://localhost:8080/v1/graphql
+    name: GetAuthors
+    description: ""
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query GetAuthors {\n\tauthors
+        {\n\t\tname\n\t\twebsite\n\t}\n}","operationName":"GetAuthors"}'
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1670767103751
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5a1d729cb81047c9856925c979e8c040
+    parentId: wrk_2474bfe3e12747f295992da493b73c47
+    modified: 1670767362854
+    created: 1670767222271
+    url: http://localhost:8080/v1/graphql
+    name: GetBooks
+    description: ""
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query GetBooks {\n  books
+        {\n    id\n\t\ttitle\n\t\tdescription\n\t\tcover\n\t\tbook_authors
+        {\n\t\t\tauthor
+        {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\twebsite\n\t\t\t}\t\t\t\n\t\t}\n  }\n}","operationName":"GetBooks"}'
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1670767103701
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_961e18e15896a1a1858a08d3c6c0ab7a2b70209c
+    parentId: wrk_2474bfe3e12747f295992da493b73c47
+    modified: 1670767100617
+    created: 1670767100617
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1670767100617
+    _type: environment
+  - _id: jar_961e18e15896a1a1858a08d3c6c0ab7a2b70209c
+    parentId: wrk_2474bfe3e12747f295992da493b73c47
+    modified: 1670767100617
+    created: 1670767100617
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_c6542bd06d9f40c6b17920af087686be
+    parentId: wrk_2474bfe3e12747f295992da493b73c47
+    modified: 1670767100613
+    created: 1670767100613
+    fileName: bbff
+    contents: ""
+    contentType: yaml
+    _type: api_spec

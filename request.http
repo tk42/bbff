@@ -1,0 +1,47 @@
+POST http://localhost:8080/v1/graphql HTTP/1.1
+content-type: application/json
+
+{
+    "query": "query GetAgents {
+        agents {
+            email
+            id
+            name
+        }
+    }"
+}
+
+#####
+POST http://localhost:8080/v1/graphql HTTP/1.1
+content-type: application/json
+
+{
+    "query": "query GetAuthors {
+        authors {
+            name
+            website
+        }
+    }"
+}
+
+####
+POST http://localhost:8080/v1/graphql HTTP/1.1
+content-type: application/json
+
+{
+    "query":"query GetBooks {
+        books {
+            id
+            title
+            description
+            cover
+            book_authors {
+                author {
+                    id
+                    name
+                    website
+                }
+            }
+        }
+    }"
+}

@@ -8,12 +8,13 @@ services:
     command: generate
 
   migration:
-    image: postgres:latest
-    command: sh -c "psql -h postgres -U user -d db -f /app/migration.sql"
-    environment:
-      - PGPASSWORD=pass
+    image: golang:latest
+    entrypoint: ./migration.sh
+    env_file:
+      - .env.local
+    working_dir: "/src"
     volumes:
-      - ./schema.sql:/app/migration.sql
+      - ".:/src"
     depends_on:
       - sqlc
       - postgres

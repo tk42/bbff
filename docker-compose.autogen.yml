@@ -13,7 +13,6 @@ services:
     env_file:
       - .env.local
     working_dir: "/src"
-    command: goose postgres "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_SERVER}:${POSTGRES_PORT}/${POSTGRES_DB}?sslmode=disable" up
     volumes:
       - "./sql/schema:/src"
     depends_on:
@@ -31,8 +30,8 @@ services:
 
   pgweb:
     image: 'sosedoff/pgweb:latest'
-    environment:
-      DATABASE_URL: postgres://user:pass@postgres:5432/db?sslmode=disable
+    env_file:
+      - .env.local
     depends_on:
       - postgres
     ports:

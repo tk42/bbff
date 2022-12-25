@@ -8,13 +8,14 @@ services:
     command: generate
 
   migration:
-    image: golang:latest
-    entrypoint: ./migration.sh
+    image: ghcr.io/tk42/goose:latest
+    platform: linux/amd64
     env_file:
       - .env.local
     working_dir: "/src"
+    command: goose postgres "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_SERVER}:${POSTGRES_PORT}/${POSTGRES_DB}?sslmode=disable" up
     volumes:
-      - ".:/src"
+      - "./sql/schema:/src"
     depends_on:
       - sqlc
       - postgres

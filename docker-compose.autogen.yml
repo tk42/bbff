@@ -18,6 +18,7 @@ services:
     depends_on:
       - sqlc
       - postgres
+    command: "up"
 
   postgres:
     image: postgres:latest

@@ -18,11 +18,11 @@ and in Hasura UI push `Track All` button twice. one for tables/views and the oth
  1. Create a repository in Google Artifact (e.g. 'backend' in ap-northeast1)
  2. Tag the docker image on Local PC
   ```
-  docker tag hasura/graphql-engine:v2.16.0.ubuntu.amd64 asia-northeast1-docker.pkg.dev/qpcrtracer/backend/graphql-engine
+  docker tag hasura/graphql-engine:v2.16.0.ubuntu.amd64 asia-northeast1-docker.pkg.dev/<project name>/backend/graphql-engine
   ```
  3. Push the image
   ```
-  docker push asia-northeast1-docker.pkg.dev/qpcrtracer/backend/graphql-engine
+  docker push asia-northeast1-docker.pkg.dev/<project name>/backend/graphql-engine
   ```
  4. Set as following based on [here](https://github.com/hasura/graphql-engine/issues/2673#issuecomment-545182529)
   ```

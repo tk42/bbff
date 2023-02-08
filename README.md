@@ -20,6 +20,10 @@ and in Hasura UI push `Track All` button twice. one for tables/views and the oth
   ```
   docker tag hasura/graphql-engine:v2.16.0.ubuntu.amd64 asia-northeast1-docker.pkg.dev/<project name>/backend/graphql-engine
   ```
+  and configure the docker registory if you need
+  ```
+  gcloud auth configure-docker asia-northeast1-docker.pkg.dev
+  ```
  3. Push the image
   ```
   docker push asia-northeast1-docker.pkg.dev/<project name>/backend/graphql-engine
